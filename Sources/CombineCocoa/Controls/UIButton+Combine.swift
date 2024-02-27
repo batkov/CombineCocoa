@@ -15,7 +15,11 @@ import UIKit
 public extension UIButton {
     /// A publisher emitting tap events from this button.
     var tapPublisher: AnyPublisher<Void, Never> {
+        #if os(tvOS)
+        controlEventPublisher(for: .primaryActionTriggered)
+        #else
         controlEventPublisher(for: .touchUpInside)
+        #endif
     }
 }
 #endif
