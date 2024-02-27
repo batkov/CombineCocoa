@@ -11,6 +11,7 @@ import UIKit
 import Combine
 
 // swiftlint:disable force_cast
+@available(tvOS 13.0, *)
 @available(iOS 13.0, *)
 public extension UISearchBar {
     /// Combine wrapper for `UISearchBarDelegate.searchBar(_:textDidChange:)`
@@ -30,7 +31,7 @@ public extension UISearchBar {
             .map { _ in () }
             .eraseToAnyPublisher()
     }
-
+#if !os(tvOS)
     /// Combine wrapper for `UISearchBarDelegate.searchBarCancelButtonClicked(_:)`
     var cancelButtonClickedPublisher: AnyPublisher<Void, Never> {
         let selector = #selector(UISearchBarDelegate.searchBarCancelButtonClicked(_:))
@@ -39,12 +40,14 @@ public extension UISearchBar {
             .map { _ in () }
             .eraseToAnyPublisher()
     }
+#endif
 
     private var delegateProxy: UISearchBarDelegateProxy {
         .createDelegateProxy(for: self)
     }
 }
 
+@available(tvOS 13.0, *)
 @available(iOS 13.0, *)
 private class UISearchBarDelegateProxy: DelegateProxy, UISearchBarDelegate, DelegateProxyType {
     func setDelegate(to object: UISearchBar) {

@@ -10,6 +10,7 @@
 import UIKit
 import Combine
 
+@available(tvOS 13.0, *)
 @available(iOS 13.0, *)
 public extension NSTextStorage {
   /// Combine publisher for `NSTextStorageDelegate.textStorage(_:didProcessEditing:range:changeInLength:)`

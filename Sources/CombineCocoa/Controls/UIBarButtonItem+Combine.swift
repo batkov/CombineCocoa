@@ -10,6 +10,7 @@
 import Combine
 import UIKit
 
+@available(tvOS 13.0, *)
 @available(iOS 13.0, *)
 public extension UIBarButtonItem {
     /// A publisher which emits whenever this UIBarButtonItem is tapped.
